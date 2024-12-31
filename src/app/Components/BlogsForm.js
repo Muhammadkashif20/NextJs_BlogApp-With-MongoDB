@@ -1,8 +1,11 @@
 "use client";
 import { useRef } from "react";
 import { addBlog } from "../actions/blogs";
+import { useRouter } from 'next/navigation'
 const BlogForm = () => {
   const formRef = useRef(null);
+  const router = useRouter()
+
   return (
     <div>
       <form
@@ -14,8 +17,8 @@ const BlogForm = () => {
             author: formData.get("author"),
           };
           console.log("formData=>", obj);
-
             await addBlog(obj);
+            router.push("/showBlogs")
            formRef.current?.reset(); 
         }}
         className="flex items-center  gap-4 flex-col justify-center m-5"
