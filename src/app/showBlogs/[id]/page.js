@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const blogDetail = async ({ params }) => {
-  let res = await fetch(`http://localhost:3001/api/blogs/${params.id}`);
+  let res = await fetch(`http://localhost:3000/api/blogs/${params.id}`);
   res = await res.json();
   console.log("response=>", res);
   return (

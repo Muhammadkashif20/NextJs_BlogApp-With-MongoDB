@@ -23,7 +23,7 @@ export async function getSingleBlog(id) {
     console.log("error=>", error);
   }
 }
-export async function ubdateBlog(id,obj) {
+export async function editBlog(id,obj) {
   console.log("getSingleBlogid=>",id);
   try {
      await fetch(`http://localhost:3000/api/blogs/${id}`,{

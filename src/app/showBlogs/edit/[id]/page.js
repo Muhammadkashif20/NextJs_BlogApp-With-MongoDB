@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-// import { addBlog } from "../actions/blogs";
 import { useRouter } from "next/navigation";
-import { getSingleBlog, ubdateBlog } from "@/app/actions/blogs";
+import { editBlog, getSingleBlog } from "@/app/actions/blogs";
 const EditBlog = ({ params }) => {
   const [blogDetail,setBlogDetail]=useState({
     title:"",
@@ -14,9 +13,9 @@ const EditBlog = ({ params }) => {
   const router = useRouter();
 
   useEffect(() => {
-    getBlogDetal();
+    getBlogDetail();
   }, [params]);
-  async function getBlogDetal() {
+  async function getBlogDetail() {
     let blog = await getSingleBlog(params.id);
     if(blog){
         setBlogDetail({...blog})
@@ -28,11 +27,11 @@ const EditBlog = ({ params }) => {
       <form
         ref={formRef}
         action={async () => {
-          let obj = {
+          const obj = {
            ...blogDetail,
           };
           console.log("formData=>", obj);
-            await ubdateBlog(params.id,obj);
+            await editBlog(params.id,obj);
             router.push("/showBlogs")
            formRef.current?.reset();
         }}
