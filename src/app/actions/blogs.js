@@ -16,9 +16,21 @@ export async function addBlog(obj) {
 export async function getSingleBlog(id) {
   console.log("getSingleBlogid=>",id);
   try {
-    let res = await fetch(`http://localhost:3001/api/blogs/${id}`);
+    let res = await fetch(`http://localhost:3000/api/blogs/${id}`);
     res = await res.json();
     return res;
+  } catch (error) {
+    console.log("error=>", error);
+  }
+}
+export async function ubdateBlog(id,obj) {
+  console.log("getSingleBlogid=>",id);
+  try {
+     await fetch(`http://localhost:3000/api/blogs/${id}`,{
+      method:"PUT",
+      body:JSON.stringify(obj)
+     });
+     revalidatePath("/showBlogs")
   } catch (error) {
     console.log("error=>", error);
   }

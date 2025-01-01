@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 // import { addBlog } from "../actions/blogs";
 import { useRouter } from "next/navigation";
-import { getSingleBlog } from "@/app/actions/blogs";
+import { getSingleBlog, ubdateBlog } from "@/app/actions/blogs";
 const EditBlog = ({ params }) => {
   const [blogDetail,setBlogDetail]=useState({
     title:"",
@@ -27,14 +27,12 @@ const EditBlog = ({ params }) => {
     <div>
       <form
         ref={formRef}
-        action={async (formData) => {
+        action={async () => {
           let obj = {
-            title: formData.get("title"),
-            body: formData.get("body"),
-            author: formData.get("author"),
+           ...blogDetail,
           };
           console.log("formData=>", obj);
-            await addBlog(obj);
+            await ubdateBlog(params.id,obj);
             router.push("/showBlogs")
            formRef.current?.reset();
         }}

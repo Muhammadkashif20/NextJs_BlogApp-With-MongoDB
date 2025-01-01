@@ -15,6 +15,8 @@ export async function DELETE(request, { params }) {
 export async function PUT(request, { params }) {
   const id = await params.id;
   const blogEdit = await request.json();
+  console.log("blogEdit=>", blogEdit);
+
   const ubdate = await BlogModal.ubdateOne(
     {
       _id: id,
