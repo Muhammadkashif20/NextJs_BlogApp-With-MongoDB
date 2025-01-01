@@ -1,6 +1,6 @@
 import Link from "next/link";
 export default async function ShowBlogs() {
-  let fetchBlogs = await fetch(`http://localhost:3000/api/blogs`);
+  let fetchBlogs = await fetch('http://localhost:3000/api/blogs');
   fetchBlogs = await fetchBlogs.json();
   return (
     <div>

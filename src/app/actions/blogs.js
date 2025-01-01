@@ -7,9 +7,30 @@ export async function addBlog(obj) {
       method: "POST",
       body: JSON.stringify(obj),
     });
-    revalidatePath("/showBlogs")
-    redirect("/showBlogs")
-
+    revalidatePath("/showBlogs");
+    redirect("/showBlogs");
+  } catch (error) {
+    console.log("error=>", error);
+  }
+}
+export async function getSingleBlog(id) {
+  console.log("getSingleBlogid=>",id);
+  try {
+    let res = await fetch(`http://localhost:3001/api/blogs/${id}`);
+    res = await res.json();
+    return res;
+  } catch (error) {
+    console.log("error=>", error);
+  }
+}
+// DeleteTodo Request For Blogs
+export async function deleteBlog(id) {
+  console.log("id=>", id);
+  try {
+    await fetch(`http://localhost:3000/api/blogs/${id}`, {
+      method: "DELETE",
+    });
+    revalidatePath("/showBlogs");
   } catch (error) {
     console.log("error=>", error);
   }
@@ -20,19 +41,6 @@ export async function ubdateBlog(obj) {
   try {
     await fetch("http://localhost:3000/api/blogs", {
       method: "PUT",
-      body: JSON.stringify(obj),
-    });
-    revalidatePath("/blogs");
-  } catch (error) {
-    console.log("error=>", error);
-  }
-}
-// DeleteTodo Request For Blogs
-export async function deleteBlog(obj) {
-  console.log("obj=>", obj);
-  try {
-    await fetch("http://localhost:3000/api/blogs", {
-      method: "DELETE",
       body: JSON.stringify(obj),
     });
     revalidatePath("/blogs");
