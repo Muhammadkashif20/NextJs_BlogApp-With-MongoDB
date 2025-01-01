@@ -1,9 +1,10 @@
 import React from 'react'
+import ShowBlogs from './showBlogs/page'
 
 const page = () => {
   return (
     <div>
-      <h1>Hello Mongodb With NextJs</h1>
+      <ShowBlogs/>
     </div>
   )
 }
